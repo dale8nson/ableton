@@ -1,101 +1,117 @@
+'use client'
+import { useState } from 'react'
+import { abletonTheme } from "@/themes";
+import Link from "next/link";
+import useSWR from 'swr'
 import Image from "next/image";
+import { SecondaryNavbar } from "@/components/SecondaryNavbar";
+import { Video } from '@/components/Video'
+import { BoldText, NormalText } from '@/components/ParagraphStyles'
 
-export default function Home() {
+const fetcher = (url: string | URL, ...args: any[]) => fetch(url, ...args).then(res => res.json())
+
+export default function ExampleAboutPage() {
+
+  const { navbar: theme } = abletonTheme
+
+  // const { data, error, isLoading } = useSWR('/api/video', fetcher)
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <section className="bg-white flex-col font-[futura] min-h-screen">
+      <SecondaryNavbar />
+      <div id="hero" className="flex justify-center align-middle">
+        <div className='mt-1 w-[85vw] h-[90vh] mx-auto bg-cover bg-center bg-[url("/header.avif")] mb-16 lg:mb-28' />
+        <h1 className="m-auto absolute text-[#fd5948] self-center font-[futura] font-medium text-[52px] md:text-[7vw]">Ableton</h1>
+      </div>
+      <div id="about" className='w-[85%] md:w-2/3 lg:w-[50vw] mx-auto font-[futura-bold] text-black'>
+        <BoldText>We make <Link href='#'>Live</Link>, <Link href='#'>Push</Link>, <Link href='#'>Note</Link> and <Link href='#'>Link</Link> — unique software and hardware for music creation and performance. With these products, our community of users creates amazing things.</BoldText>
+        <NormalText>
+          Ableton was founded in 1999 and released the first version of Live in 2001. Our products are used by a community of dedicated musicians, sound designers, and artists from across the world.
+        </NormalText>
+      </div>
+      <div className="py-[8%] mt-16 lg:mt-24 relative flex-col w-screen h-[58.33333vw] ">
+        <div className="absolute top-0 right-0 bg-[#fbffa7] w-[60.33333vw] h-[58.33333vw] mr-0 ml-auto " />
+        <div className="flex top-0 left-0 absolute align-middle justify-evenly  w-screen h-[58.33333vw] z-10">
+          <div className="bg-[url('/photo-1.jpg')] w-[40vw] h-[40vw] bg-no-repeat bg-contain self-center" />
+          <div className="relative m-0 bg-[url('/photo-2.jpg')] w-[35vw] h-[35vw] bg-no-repeat bg-contain z-50 self-center justify-self-center bg-center" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </div>
+      <div className='w-[85%] md:w-2/3 lg:w-[50vw] mx-auto mt-16 lg:mt-24 mb-16 text-black'>
+        <BoldText >Making music isn't easy. It takes time, effort, and learning. But when you're in the flow, it's incredibly rewarding.
+        </BoldText>
+        <NormalText>
+          We feel the same way about making Ableton products. The driving force behind Ableton is our passion for what we make, and the people we make it for.
+        </NormalText>
+      </div>
+      <Video />
+      <div className='w-[85%] md:w-2/3 lg:w-[50vw] mx-auto'>
+        <BoldText>
+          We are more than 350 people from 30 different countries divided between our headquarters in Berlin and our offices in Los Angeles and Tokyo.
+        </BoldText>
+        <NormalText>
+          Most of us are active musicians, producers, and DJs, and many of us use Live and Push every day. We come from a wide range of cultural and professional backgrounds. Some of us have PhDs, some are self-taught, and most of us are somewhere in between. What connects us is the shared belief that each of us has the skills and knowledge to contribute to something big: helping to shape the future of music culture.
+        </NormalText>
+      </div>
+      <div className="py-[8%] mt-16 lg:mt-24 relative flex-col w-screen h-[75vw]">
+        <div className="flex top-0 left-0 absolute mx-auto align-middle w-screen z-10 justify-around">
+          <div className="absolute left-0 bg-[#b6ffc0] w-[58.33333vw] h-[75vw] mr-auto ml-0" />
+          <div className='flex-col relative justify-evenly content-around h-[75vw]'>
+            <div className="bg-[url('/photo-3.jpg')] w-[30vw] h-[30vw] bg-no-repeat bg-contain bg-center" />
+            <div className="bg-[url('/photo-4.jpg')] w-[30vw] h-[30vw] bg-no-repeat bg-contain bg-center" />
+          </div>
+          <div className="relative bg-[url('/photo-5.jpg')] w-[35vw] h-[35vw] bg-no-repeat bg-contain z-50 bg-center self-center" />
+        </div>
+      </div>
+      <div className='w-[85%] md:w-2/3 lg:w-[50vw] mx-auto mt-16 lg:mt-36'>
+        <BoldText>
+          We believe it takes focus to create truly outstanding instruments. We only work on a few products and we strive to make them great.
+        </BoldText>
+        <NormalText>
+          Rather than having a one-size-fits-all process, we try to give our people what they need to work their magic and grow. We've learned that achieving the best results comes from building teams that are richly diverse, and thus able to explore problems from a wider set of perspectives. We don't always agree with each other, but opinion and debate are valued and openly encouraged.
+        </NormalText>
+      </div>
+      <div className='bg-[url(/poster-meet-the-makers.avif)] mx-[8.33333vw] h-[44.99591836734694vw] bg-cover bg-center  mt-16 md:mt-36 bg-no-repeat' >
+      </div>
+      <div className='w-[85%] md:w-2/3 mx-auto mt-16 md:mt-36'>
+        <BoldText>
+          We're passionate about what we do, but we're equally passionate about improving who we are.
+        </BoldText>
+        <NormalText>
+          We work hard to foster an environment where people can grow both personally and professionally, and we strive to create a wealth of opportunities to learn from and with each other.
+        </NormalText>
+        <NormalText>
+          Alongside an internal training program, employees are actively supported in acquiring new knowledge and skills, and coached on applying these in their daily work. In addition, staff-organized development and music salons are a chance to discuss new technologies, production techniques and best practices.
+        </NormalText>
+      </div>
+      <div className='relative flex mt-16 md:mt-36 w-screen mx-0 min-h-[60vw] align-middle justify-center'>
+        <div className='m-auto min-w-[60vw] min-h-[60vw] bg-[#d5b3ff]' />
+        <div className='flex align-middle justify-start min-h-[60vw] w-screen absolute m-auto' >
+          <div className='bg-contain bg-center bg-[url(/photo-6-a.jpg)] w-[35vw] bg-no-repeat h-[35vw] m-auto' />
+          <div className='bg-contain bg-center bg-[url(/photo-7.jpg)] w-[45vw] bg-no-repeat h-[45vw] top-auto  ml-auto mr-0 my-auto' />
+        </div>
+      </div>
+      <div id="jobs" className='w-[85%] md:w-2/3 lg:w-[50vw] mx-auto mt-16 md:mt-36'>
+        <BoldText>
+          We want our employees to love it here. Since we're looking for exceptional talent from around the world, we will do everything we can to make your transition as easy as possible.
+        </BoldText>
+        <NormalText>
+          If you're joining us in Berlin, we'll help with relocation and paperwork. We'll even provide you with free German or English lessons. Plus, working in Germany means you can expect comprehensive health insurance for you and your family, as well as generous maternity and paternity leave. Office hours are flexible, but it's not all work; we have several company and team outings throughout the year as well as a variety of fun, informal small-group activities.
+        </NormalText>
+      </div>
+      <div className='mx-[8.33333vw] flex-col flex sm:align-middle mt-16 lg:mt-36 lg:flex-row lg:justify-center' >
+        <div className='w-full lg:w-[50vw] h-[50vw] bg-[url("/photo-8.jpg")] bg-cover bg-no-repeat bg-center' />
+        <div className=' h-auto  bg-[#b1c5ff]  flex items-center justify-items-center lg:w-[50vw] '>
+          <div className='w-full  mx-[8.33333%] my-auto  flex-col items-center justify-items-center justify-center'>
+            <BoldText>
+              We're really proud of the work we've done so far. But there's so much more to come. If you'd like to be a part of it, please join us.
+            </BoldText>
+            <BoldText>
+              <Link href='#' className="after:[content:''] after:inline-block after:w-[0.3em] after:h-[0.3em] after:border-solid after:border-[#0000ff] after:border-t-[0.09em] after:border-r-[0.09em] after:ml-[0.1em] after:rotate-[50deg] after:skew-x-[10deg] after:-translate-y-[50%]" >See latest jobs
+              </Link>
+            </BoldText>
+          </div>
+        </div>
+      </div>
+    </section >
+  )
 }
